@@ -1,6 +1,11 @@
 const express=require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port=process.env.PORT || 3000;
+
+//process.env is an object that stores all our env variables as key value pairs
+//windows env variables can be found by typing SET in cmd. Heroku is gonna use the port frm here
+
 
 var app=express(); //it is mandatory as it takes return val from express
 
@@ -63,6 +68,8 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => { //listen is mandatory as it performs binding
-  console.log('Server is up on port 3000');
+//for heroku, we need to make a dynamic environment variable which heroku is gonna set
+//all machines have environment variable
+app.listen(port, () => { //listen is mandatory as it performs binding
+  console.log(`Server is up on port ${port}`);
 });
